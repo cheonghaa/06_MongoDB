@@ -35,3 +35,32 @@ db.numbers.stats();
 
 
 //L2
+db.users.insert({username: "smith"});
+db.users.update({username: "smith"},
+{
+$set: {
+    favorites: {
+        cities: ["Chicago", "Chenyenne"],
+        movies: ["Casablanca", "For a Few Dollars More", "The Sting"]
+    }
+}    
+})
+
+
+db.users.insert({username: "smith"});
+db.users.update( {username: "jones"},
+{
+$set: {
+favorites: {
+movies: ["Casablanca", "Rocky"]
+}
+}
+})
+
+db.users.find({"favorites.movies": "Casablanca"}).pretty()
+
+db.users.update( {"favorites.movies": "Casablanca"},
+{$addToSet: {"favorites.movies": "The Maltese Falcon"} },
+false, // insert if not found?
+true ) // update all found? (if false, updates just first it finds)
+
