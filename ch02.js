@@ -1,0 +1,9 @@
+use my_database;
+db.users.find();
+
+db.users.insert({username: "smith"});
+
+use tutorial
+db.users.insert({username: 'smith'});
+
+db.users.find();
